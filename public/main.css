@@ -1,0 +1,60 @@
+body {
+	min-width: 500px
+}
+input {
+	margin-bottom:20px;
+}
+.app {
+	padding:50px;
+	/*background-color:blue;*/
+}
+.site-title {
+	font-size: 50px;
+}
+.icon {
+	background-size: 20px;
+	width: 30px;
+	height: 30px;
+}
+.booklist {
+
+}
+.booklist button {
+	
+	/*float: left;*/
+	/*display: inline;*/
+}
+.book-item {
+	margin-bottom: 10px;
+}
+.cart-book {
+	margin-left: 10px;
+}
+.cart {
+	min-width:200px;
+	background:;
+	width: 45%;
+	margin-right: 0;
+	float: right;
+}
+.cart-container{
+	padding: 5%;
+	height: 300px;
+}
+.cart-container .title{
+	font-weight: bold;
+	font-size: 20px;
+}
+.cart button{ 
+	width:51%;
+	float: right;
+}
+.total {
+	font-size:20px;
+	margin-left: 5%;
+}
+.quantity {
+	font-size: 10px;
+	font-weight: none;
+	float: right;
+}

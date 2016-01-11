@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app='bookstore'>
+  <head>
+    <meta charset="utf-8" />
+    <title>bookster.ville</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+     <link rel="stylesheet" type="text/css" href="main.css"/>
+  </head>
+  <body>
+    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
+    <div class='app' ng-controller='BookStoreController'>
+    	<h1 class='site-title'>bookster.ville</h1>
+    	<div class='booklist'>
+	    </div>
+    	
+    	<div class='cart'>
+	    	<button ng-click='toggleCart()'>toggle cart</button>
+	    	<button ng-click='cart.empty()'>empty cart</button>
+	    	<button ng-click='cart.empty()'>check out</button>
+	    	<p>Total: </p><p> ${{cart.price()}}</p>
+	    	<div class='cart-container'>
+		    	<p class='cart-book' ng-hide='showCart' ng-repeat='book in cart.books' ng-click='cart.removeBook($index)'><span class='total'>{{book.title}}</span> by {{book.author}} <span class='quantity'> qty. {{book.count}}</span></p>
+    		</div>
+    	</div>
+	    	<input type="text" placeholder="Filter Books" ng-model="search">
+	    	<div class='book-item' ng-repeat = 'book in books | filter:search'>
+	    		<button ng-click='addBook(book)'>add to cart</button>
+
+	    		<img class='icon' ng-src="book.png">
+	    		<span>{{book.title}}</span>
+	    		<span>{{book.author}}</span>
+	    		<span>{{book.price}}</span>
+
+	    	</div>
+
+    </div>
+
+    <script src="angular.js"></script>
+    <script src="angular-route.js"></script>
+    <script src="bookstore.js"></script>
+
+    <!-- <script src="app/auth/auth.js"></script> -->
+    <!-- <script src="app/links/links.js"></script> -->
+    <!-- <script src="app/shorten/shorten.js"></script> -->
+    <!-- <script src="app/services/services.js"></script> -->
+    <!-- <script src="app/app.js"></script> -->
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "ourbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "html": "0.0.10",
+    "mongoose": "^4.3.4",
+    "request": "^2.67.0"
+  }
+}
