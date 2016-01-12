@@ -27,7 +27,9 @@ app.get('/data', function (req,res,next) {
 app.post('/data', function (req,res,next) {
 	console.log('body',req.body);
 	var book = new db.books(req.body);
-	book.save();
+	book.save(function (err, book) {
+		console.log('DB ERROR',err, book)
+	});
 	res.status(200).send()
 
 

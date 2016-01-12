@@ -43,9 +43,6 @@ angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
   };
   $scope.cart = {
     total: 0,
-    price: function (){
-      return this.total.toFixed(2);
-    },
     books:[],
     empty: function () {
       this.total = 0;

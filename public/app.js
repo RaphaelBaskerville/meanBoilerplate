@@ -20,30 +20,19 @@ db.once('open', function (){
 		price: Number
 	});
 
-	// var UserSchema = mongoo;se.Schema({
-	// 	username: {type:String, index: {unique: true}},
-	// 	messages: [MessageSchema]
-	// });
+	var UserSchema = mongoose.Schema({
+		username: {type:String, index: {unique: true}},
+		password: String
+	});
 
-	// var User = mongoose.model('User', UserSchema);
+	var User = mongoose.model('User', UserSchema);
 	var Book = mongoose.model('Book', BookSchema);
 
-	// [
- //  {title:'book1',author:'daniel', price:4.99},
- //  {title:'book2',author:'karun', price:4.99},
- //  {title:'book3',author:'jaun', price:4.99},
- //  {title:'book4',author:'blain', price:4.99},
- //  {title:'book5',author:'sola', price:4.99},
- //  {title:'book6',author:'nick', price:4.99},
- //  {title:'book7',author:'jon', price:4.99}
- //  ].forEach(function(newBook) {
-	// 	new Book ({ title : newBook.title, author : newBook.author, price : newBook.price }).save();
- //  });
+  console.log('db is feeling good');
 
-  console.log('just checking')
-module.exports = {
-	books: Book
-};
+	module.exports = {
+		books: Book
+	};
 
 
 
