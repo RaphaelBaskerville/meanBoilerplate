@@ -14,24 +14,51 @@ app.use(bodyParser.json());
 // app.get('/', function (req,res) {
 // res.status(200).send()
 // })
+
+///////////////////////////////////
+/////////BOOKS/////////////////////
+///////////////////////////////////
+
 app.get('/data', function (req,res,next) {
 	db.books.find({},function (err, data){
 		if (err) {
-			res.send(500);
+			res.status(500);
 		} else {
 			console.log(data);
 			res.status(200).send(data);
-		}
+		}	
 	});
 });
 app.post('/data', function (req,res,next) {
-	console.log('body',req.body);
 	var book = new db.books(req.body);
 	book.save(function (err, book) {
-		console.log('DB ERROR',err, book)
+		console.log('DB ERROR /book post',err, book)
 	});
-	res.status(200).send()
+	res.status(200).send();
 
+
+	/////////////////////////////////////
+	//////////USERS//////////////////////
+	/////////////////////////////////////
+app.get('/user', function (req, res) {
+	db.users.find(req.body, function(err, data){
+		if (err) {
+			console.error("\n\n/user error on get: ", err)
+			res.status(500).send();
+		} else {
+			console.log('\n\n/user FOUND USER');
+			res.status(200).send();
+		}
+	})
+});
+
+app.post('/user', function (req,res) {
+	var user = new db.users(req.body);
+	user.save(function (err, user) {
+		console.error('DB ERROR /user post', err, user)
+	})
+	res.status(200).send();
+})
 
 
 });
