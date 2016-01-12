@@ -1,0 +1,11 @@
+
+<input type="text" placeholder="Filter Books" ng-model="search">
+<div class='book-item' ng-repeat = 'book in books | filter:search'>
+	<button ng-click='addBook(book)'>add to cart</button>
+
+	<img class='icon' ng-src="book.png">
+	<span>{{book.title}}</span>
+	<span>{{book.author}}</span>
+	<span>{{book.price}}</span>
+
+</div>

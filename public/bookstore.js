@@ -1,13 +1,27 @@
-angular.module('bookstore', [])
-.controller('BookStoreController', function ($scope, $http) {
+angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
+.config(function ($routeProvider) {
+  $routeProvider
+  .when('/store', {
+    templateUrl: 'mainstore.html',
+    controller: 'BookStoreController'
+  })
+  .when('/admin', {
+    templateUrl: 'admin.html',
+    controller: 'AdminController'
+  })
+  .otherwise({
+    templateUrl: 'signin.html',
+    controller: 'BookStoreController'
+  })
+})
 
-  
+.controller('BookStoreController', function ($scope, $http) {
+ 
   $http.get('/data').then(function(books){
     console.log(books)
     $scope.books = books.data;
   });
   
-
   $scope.addBook = function (book) {
     console.log(this.cart.findBook(book.title));
     if (!this.cart.findBook(book.title).length) {
@@ -52,7 +66,12 @@ angular.module('bookstore', [])
     }
 
   };
-});
+})
+
+
+
+
+
 // .factory('bookFactory', [function(){
 //   return {
 

@@ -4,14 +4,15 @@ var path = require("path");
 var db = require('./public/app.js');
 var fs = require('fs');
 var port = process.env.PORT || 8000;
-var bodyparser = require('body-parser');
+var bodyParser = require('body-parser');
 var app = express();
 
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 // app.use(bodyparser);
 // app.get('/', function (req,res) {
-// 	res.status(200).send()
+// res.status(200).send()
 // })
 app.get('/data', function (req,res,next) {
 	db.books.find({},function (err, data){
@@ -23,7 +24,15 @@ app.get('/data', function (req,res,next) {
 		}
 	});
 });
+app.post('/data', function (req,res,next) {
+	console.log('body',req.body);
+	var book = new db.books(req.body);
+	book.save();
+	res.status(200).send()
 
+
+
+});
 // app.get('/public/bookstore', function (req,res) {
 // 	res.body=angular;
 // 	res.end();
