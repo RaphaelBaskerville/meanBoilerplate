@@ -24,11 +24,12 @@ app.get('/data', function (req,res,next) {
 		if (err) {
 			res.status(500);
 		} else {
-			console.log(data);
+			// console.log(data);
 			res.status(200).send(data);
 		}	
 	});
 });
+
 app.post('/data', function (req,res,next) {
 	var book = new db.books(req.body);
 	book.save(function (err, book) {
@@ -36,32 +37,44 @@ app.post('/data', function (req,res,next) {
 	});
 	res.status(200).send();
 
+});
+
+app.post('/dataUpdate', function (req,res,next) {
+	console.log('attempting to update book', req.body.title, req.body.price, req.body.quantity);
+	db.books.update({'title' : req.body.title}, { $set : {'price': req.body.price, 'quantity': req.body.quantity}}, function(err,data){
+		console.log('after update callback.  ERR', err)
+	})
+	res.status(200).send();
+});
+
+app.post('/dataDelete', function (req,res,next) {
+	console.log('attempting to delete book', req.body.title);
+	db.books.remove({'title' : req.body.title}, function(err,data){
+		console.log('after update callback.  ERR', err)
+	})
+	res.status(200).send();
+});
 
 	/////////////////////////////////////
 	//////////USERS//////////////////////
 	/////////////////////////////////////
-app.get('/user', function (req, res) {
-	db.users.find(req.body, function(err, data){
-		if (err) {
-			console.error("\n\n/user error on get: ", err)
-			res.status(500).send();
-		} else {
-			console.log('\n\n/user FOUND USER');
-			res.status(200).send();
-		}
+app.post('/auth', function (req,res) {
+	db.users.find(req.body, function (err, data) {
+		res.status(200).send(data);
 	})
-});
+})
+
 
 app.post('/user', function (req,res) {
 	var user = new db.users(req.body);
+	console.log(req.body)
 	user.save(function (err, user) {
-		console.error('DB ERROR /user post', err, user)
+		console.error('\n\nDB ERROR /user post', user, err)
 	})
 	res.status(200).send();
 })
 
 
-});
 // app.get('/public/bookstore', function (req,res) {
 // 	res.body=angular;
 // 	res.end();

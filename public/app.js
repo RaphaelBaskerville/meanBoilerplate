@@ -17,7 +17,8 @@ db.once('open', function (){
 	var BookSchema = mongoose.Schema({
 		title: {type : String , index : {unique : true} },
 		author: String,
-		price: Number
+		price: Number,
+		quantity: Number
 	});
 
 	var UserSchema = mongoose.Schema({
@@ -31,7 +32,8 @@ db.once('open', function (){
   console.log('db is feeling good');
 
 	module.exports = {
-		books: Book
+		books: Book,
+		users: User
 	};
 
 

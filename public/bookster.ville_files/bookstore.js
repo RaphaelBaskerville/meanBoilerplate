@@ -21,10 +21,6 @@ angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
     console.log(books)
     $scope.books = books.data;
   });
-  $scope.home = function () {
-    console.log('go home')
-    $location.path('/');
-  }
   $scope.signup = function (user) {
     console.log('signUPUPUP user: ',user);
     // post book to the db
@@ -59,15 +55,12 @@ angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
       this.cart.books.push(book);
       book.count = 1;
       book.quantity--;
-    } else if (book.quantity){
+    } else {
       book.count++;
       book.quantity--;
 
-    } 
-    if (book.quantity) {
-      this.cart.total += book.price;
-      
     }
+    this.cart.total += book.price;
   };
   $scope.toggleCart = function () {
     if (!this.showCart) {
@@ -81,18 +74,15 @@ angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
   $scope.cart = {
     total: 0,
     books:[],
-    empty: function (x) {
+    empty: function () {
       this.total = 0;
       this.books = [];
-      if (x) {
-        alert('your books are on the way')
-      }
     },
     removeBook: function (index) {
       var book = this.books[index];
       this.total -= book.price;
       book.count--;
-      book.quantity++;
+      book.quantity++
       if (book.count === 0) {
         this.books.splice(index,1);
       }
