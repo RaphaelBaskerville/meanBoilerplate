@@ -5,7 +5,7 @@
 	.directive( 'books' , function () {
 		return {
 			restrict: 'E',
-			templateUrl: 'books.html'
+			templateUrl: 'views/books.html'
 		};
 	});
 })();

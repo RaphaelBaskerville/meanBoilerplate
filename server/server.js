@@ -1,14 +1,14 @@
 var express = require('express');
 var html = require('html');
 var path = require("path");
-var db = require('./public/app.js');
+var db = require('./app.js');
 var fs = require('fs');
 var port = process.env.PORT || 8000;
 var bodyParser = require('body-parser');
 var app = express();
 
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + './../public'));
 app.use(bodyParser.json());
 // app.use(bodyparser);
 // app.get('/', function (req,res) {
@@ -26,7 +26,7 @@ app.get('/data', function (req,res,next) {
 		} else {
 			// console.log(data);
 			res.status(200).send(data);
-		}	
+		}
 	});
 });
 

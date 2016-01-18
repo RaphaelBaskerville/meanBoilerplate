@@ -5,7 +5,7 @@
 	.directive( 'cart' , function () {
 		return {
 			restrict: 'E',
-			templateUrl: 'cart.html'
+			templateUrl: 'views/cart.html'
 		};
 	})
 

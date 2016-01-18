@@ -6,15 +6,15 @@ angular.module('bookstore', ['ui.router', 'cart', 'books', 'admin'])
   $stateProvider
   .state('signin', {
       url: '/signin',
-      templateUrl: 'signin.html',
+      templateUrl: '/views/signin.html',
   })
   .state('store', {
     url: '/mainstore',
-    templateUrl: '/mainstore.html',
+    templateUrl: '/views/mainstore.html',
   })
   .state('admin', {
     url: '/admin',
-    templateUrl: 'admin.html'
+    templateUrl: '/views/admin.html'
   })
 })
 

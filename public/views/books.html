@@ -3,7 +3,7 @@
 	<div class='book-item' ng-repeat = 'book in books | filter:search'>
 		<button ng-click='addBook(book)'>add</button>
 
-		<img class='icon' ng-src="book.png">
+		<img class='icon' ng-src="css/book.png">
 		<span class='title'>{{book.title}}</span>
 		<span class='author'>by: {{book.author}}</span>
 		<span class='price'>{{book.price | currency}}</span>
