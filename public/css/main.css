@@ -49,15 +49,16 @@ button {
 
 }
 .booklist button {
-	
+
 	/*float: left;*/
 	/*display: inline;*/
 }
 .book-item {
+  height: 30px;
 	margin-bottom: 0px;
 }
 .book-item .title {
-	font-size: 25px;
+	font-size: 20px;
 	text-decoration: underline;
 }
 .book-item .author {
@@ -82,14 +83,14 @@ button {
 }
 .cart {
 	padding:0px 0px 0px 0px;
-	/*min-width:200px;*/ 
+	/*min-width:200px;*/
 	/*background:;*/
 	/*width: 45%;*/
 	/*margin-right: 0;*/
 }
 .cart-container{
 	background-color: rgba(255,255,255,0.1);
-	
+
 	text-align: right;
 	float: right;
 	padding: 0;
@@ -100,7 +101,7 @@ button {
 	font-size: 25px;
 	opacity:0.8;
 }
-.cart button { 
+.cart button {
 	/*width:51%;*/
 	/*float: right;*/
 }
