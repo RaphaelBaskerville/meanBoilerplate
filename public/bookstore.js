@@ -1,22 +1,25 @@
-angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
-.config(function ($routeProvider) {
-  $routeProvider
-  .when('/store', {
-    templateUrl: 'mainstore.html',
-    controller: 'BookStoreController'
+angular.module('bookstore', ['ui.router', 'cart', 'books', 'admin'])
+.config(function ($urlRouterProvider, $stateProvider) {
+  $urlRouterProvider
+  .otherwise('/signin');
+
+  $stateProvider
+  .state('signin', {
+      url: '/signin',
+      templateUrl: 'signin.html',
   })
-  .when('/admin', {
-    templateUrl: 'admin.html',
-    controller: 'AdminController'
+  .state('store', {
+    url: '/mainstore',
+    templateUrl: '/mainstore.html',
   })
-  .otherwise({
-    templateUrl: 'signin.html',
-    controller: 'BookStoreController'
+  .state('admin', {
+    url: '/admin',
+    templateUrl: 'admin.html'
   })
 })
 
 .controller('BookStoreController', function ($scope, $http, $location) {
- 
+
   $http.get('/data').then(function(books){
     console.log(books)
     $scope.books = books.data;
@@ -41,10 +44,10 @@ angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
       if (data.data.length) {
         if (data.data[0].username === 'admin') {
           $location.path('/admin');
-        } else { 
+        } else {
           console.log('logged in');
           user.auth = true;
-          $location.path('/store');
+          $location.path('/mainstore');
         }
 
       } else {
@@ -52,7 +55,7 @@ angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
       }
     });
   }
-  
+
   $scope.addBook = function (book) {
     console.log(this.cart.findBook(book.title));
     if (!this.cart.findBook(book.title).length && book.quantity > 0) {
@@ -63,10 +66,10 @@ angular.module('bookstore', ['ngRoute', 'cart', 'books', 'admin'])
       book.count++;
       book.quantity--;
 
-    } 
+    }
     if (book.quantity) {
       this.cart.total += book.price;
-      
+
     }
   };
   $scope.toggleCart = function () {

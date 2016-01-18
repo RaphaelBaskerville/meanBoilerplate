@@ -9,6 +9,7 @@
   "author": "me",
   "license": "ISC",
   "dependencies": {
+    "angular-ui-router": "^0.2.15",
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
     "html": "0.0.10",
