@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+// var Schema = mongoose.Schema;
 
 // specify which db to use and where it is.
 mongoose.connect('mongodb://localhost/books');

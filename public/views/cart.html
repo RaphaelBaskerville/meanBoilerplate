@@ -1,14 +1,17 @@
 <div class='cart'>
-	<button ng-click="home()" class='logout'>SignOut</button>
-	<button ng-click='toggleCart()'>toggle cart</button>
+	<a ng-click="home()" class='logout'>SignOut</a>
+	<a ng-click='toggleCart()'>toggle cart</a>
+  <a href='/#/popular'>popularBooks</a>
+  <a href='/#/mainstore'>Books</a>
+
+  <span class='total'>Total: </span><span> {{cart.total | currency}}</span>
+  <div class='cart-container' ng-hide='!showCart'>
+    <p class='cart-book' ng-repeat='book in cart.books' ng-click='cart.removeBook($index)'>
+      <span>{{book.title}}</span>
+      <span>by {{book.author}}</span>
+      <span class='quantity'> qty. {{book.count}}</span>
+    </p>
 	<button ng-click='cart.empty()'>empty cart</button>
 	<button ng-click='cart.empty("x")'>check out</button>
-	<span class='total'>Total: </span><span> {{cart.total | currency}}</span>
-	<div class='cart-container'>
-  	<p class='cart-book' ng-hide='!showCart' ng-repeat='book in cart.books' ng-click='cart.removeBook($index)'>
-  		<span>{{book.title}}</span> 
-  		<span>by {{book.author}}</span>	
-  		<span class='quantity'> qty. {{book.count}}</span>
-  	</p>
 	</div>
 </div>

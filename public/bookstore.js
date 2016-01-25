@@ -15,7 +15,12 @@ angular.module('bookstore', ['ui.router', 'cart', 'books', 'admin'])
   .state('admin', {
     url: '/admin',
     templateUrl: '/views/admin.html',
+  })
+  .state('popular', {
+    url: '/popular',
+    templateUrl: '/views/popularBooks.html',
   });
+
 })
 
 .controller('BookStoreController', function($scope, $http, $location) {
@@ -23,6 +28,25 @@ angular.module('bookstore', ['ui.router', 'cart', 'books', 'admin'])
   $http.get('/data').then(function(books) {
     console.log(books);
     $scope.books = books.data;
+  });
+
+  $http.get('/popularBooks').then(function(popularBooks) {
+    console.log('top20', (popularBooks));
+    popularBooks.data.map(function(book) {
+      console.log(book.price);
+      var strArr = book.price.split('');
+      strArr.shift();
+      book.price = parseInt(strArr.join(''));
+
+      // fix author
+      book.author = book.author.split(' ');
+      book.author.shift();
+      // book.author.pop();
+      book.author = book.author.join(' ');
+      console.log(book);
+      return book
+    })
+    $scope.popularBooks = popularBooks.data;
   });
 
   $scope.home = function() {

@@ -1,19 +1,16 @@
 var express = require('express');
 var html = require('html');
-var path = require("path");
+var path = require('path');
 var db = require('./app.js');
 var fs = require('fs');
+var Xray = require('x-ray');
+var xray = new Xray();
 var port = process.env.PORT || 8000;
 var bodyParser = require('body-parser');
 var app = express();
 
-
 app.use(express.static(__dirname + './../public'));
 app.use(bodyParser.json());
-// app.use(bodyparser);
-// app.get('/', function (req,res) {
-// res.status(200).send()
-// })
 
 ///////////////////////////////////
 /////////BOOKS/////////////////////
@@ -73,79 +70,26 @@ app.post('/user', function (req,res) {
 	})
 	res.status(200).send();
 })
-
-
-// app.get('/public/bookstore', function (req,res) {
-// 	res.body=angular;
-// 	res.end();
-// });
-
-// app.get('/public/bookstore', function (req,res) {
-// 	console.log('getting it bookstore');
-// 	fs.readFile(__dirname + '/public/bookstore.js', function (err,data) {
-// 		if(err) {
-// 			console.log('bookstore error',err)
-// 		} else {
-// 			// data = JSON.parse(data);
-// 			console.log('no err', data)
-// 			res.body=angular;
-// 			res.end();
-// 		}
-// 	})
-// });
-
-// app.get('/angular', function (req,res) {
-// 	console.log('getting it');
-// 	fs.readFile(__dirname + '/angular.js', function (err,data) {
-// 		if(err) {
-// 			console.log(err)
-// 		} else {
-// 			// data = JSON.parse(data);
-// 			console.log('no err', data)
-// 			res.body=(data);
-// 			res.end();
-// 		}
-// 	})
-// });
-// app.get('/angular-route', function (req,res) {
-// 	console.log('getting it');
-// 	fs.readFile(__dirname + '/angular-route.js', function (err,data) {
-// 		if(err) {
-// 			console.log(err)
-// 		} else {
-// 			// data = JSON.parse(data);
-// 			console.log('no err', data)
-// 			res.body=data;
-// 			res.end();
-// 		}
-// 	})
-// });
-// app.get('/bootstrap', function (req,res) {
-// 	console.log('getting it');
-// 	fs.readFile(__dirname + '/bootstrap.min.css', function (err,data) {
-// 		if(err) {
-// 			console.log(err)
-// 		} else {
-// 			// data = JSON.parse(data);
-// 			console.log('no err', data)
-// 			res.body=data;
-// 			res.end();
-// 		}
-// 	})
-// });
-// app.get('/main', function (req,res) {
-// 	console.log('getting it');
-// 	fs.readFile(__dirname + '/public/main.css', function (err,data) {
-// 		if(err) {
-// 			console.log(err)
-// 		} else {
-// 			// data = JSON.parse(data);
-// 			console.log('no err', data)
-// 			res.body=data;
-// 			res.end();
-// 		}
-// 	})
-// });
-
+//////////////////////////////////////
+////////// xray //////////////////////
+//////////////////////////////////////
+app.get('/popularBooks', function(req, res) {
+  res.status(200)
+    xray('http://www.amazon.com/gp/bestsellers/books/ref=sv_b_2', 'div.zg_itemWrapper', [{
+          title: '.zg_title',
+          author: '.zg_byline',
+          price: '.price',
+          image: 'img@src'
+        }])
+        .paginate('#zg_page2 a@href')
+        .limit(2)
+        .paginate('#zg_page3 a@href')
+        .limit(2)
+        .paginate('#zg_page4 a@href')
+        .limit(2)
+        .paginate('#zg_page5 a@href')
+        .limit(2)
+          .write().pipe(res)
+})
 
 app.listen(port);

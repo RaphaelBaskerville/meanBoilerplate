@@ -9,10 +9,10 @@ input {
 button {
 	/*text-align:center;*/
 	/*padding-top: 20px;*/
-	background: linear-gradient(45deg,#D95B43,#A62208);
-	opacity: 0.7;
+	background: linear-gradient(45deg,#006666,#00191a);
+	/*opacity: 0.5;*/
 	color:white;
-	border-radius: 5px;
+	border-radius: 5px	;
 	/*padding: 10px;*/
 	/*max-height: 15px;*/
 }
@@ -41,28 +41,48 @@ button {
 }
 
 .icon {
+	float: right;
 	background-size: 10px;
-	width: 25px;
-	height: 25px;
+	width: 100px;
+	height: 100px;
+	margin-top: 10px;
+	/*margin-right: 10px;*/
+}
+.amazon-icon {
+	float: right;
+	background-size: 10px;
+	width: 90px;
+	height: 130px;
+	/*margin-top: 10px;*/
+	/*margin-right: 35%;*/
+}
+.bookdata {
+	/*float: right;*/
 }
 .booklist {
 
 }
-.booklist button {
-
+.bookdata button {
 	/*float: left;*/
 	/*display: inline;*/
+	width: 120px;
+	/*height: 50px;*/
 }
 .book-item {
-  height: 30px;
+	padding: 0 10px 10px 10px;
+	width: 67%;
+	float: none;
+  min-height: 140px;
 	margin-bottom: 0px;
+	border-bottom: 3px solid #D95B43;
+	margin-bottom: 10px;
 }
 .book-item .title {
-	font-size: 20px;
+	font-size: 18px;
 	text-decoration: underline;
 }
 .book-item .author {
-	font-size: 15px;
+	font-size: 14px;
 	margin-left:10px;
 }
 .book-item .price {
@@ -73,6 +93,7 @@ button {
 	font-size: 10px;
 	margin-left:10px;
 	font-style: italic;
+	margin-bottom:35px;
 }
 .cart-book {
 	/*margin-left: 10px;*/
@@ -83,40 +104,53 @@ button {
 }
 .cart {
 	padding:0px 0px 0px 0px;
+	margin-left: 20px;
 	/*min-width:200px;*/
 	/*background:;*/
 	/*width: 45%;*/
-	/*margin-right: 0;*/
+	margin-right: 20px;
+}
+.cart a {
+	margin-left: 20px;
 }
 .cart-container{
-	background-color: rgba(255,255,255,0.1);
-
-	text-align: right;
-	float: right;
-	padding: 0;
+	background-color: rgba(0, 153, 153,0.3);
+	text-align: left;
+	/*float: right;*/
+	border-radius: 14px;
+	padding: 50px 50px 50px 50px;
 	margin: 50px 20px 0 0;
 }
 .cart-container span{
 	font-weight: bold;
-	font-size: 25px;
-	opacity:0.8;
+	color: white;
+	font-size: 20px;
+	opacity:.9;
 }
 .cart button {
-	/*width:51%;*/
-	/*float: right;*/
+	/*width:50px;*/
+	/*height: 50px;*/
+	margin-left:10px;
+	margin-top: 25px;
+	float: right;
+	font-size: 10px;
+	text-align:center;
+	/*border-radius: 50%;*/
+	/*background: linear-gradient(45deg,#00ffff,#00191a);*/
+
 }
 .filter {
-	margin-top: 20px;
+	margin-top: 5px;
 }
 .total {
 	/*vertical-align: text-top;*/
-	font-size:25px;
+	font-size:15px;
 	/*padding-top:20px;*/
-	margin-left: 5%;
+	margin-left: 10px;
 }
 .quantity {
 	font-size: 10px;
 	font-weight: none;
-	margin-left: 0px;
-	/*float: right;*/
+	margin-left: 100px;
+	float: right;
 }
